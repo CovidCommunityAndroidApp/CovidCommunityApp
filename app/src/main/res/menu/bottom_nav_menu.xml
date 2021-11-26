@@ -17,4 +17,8 @@
         android:id="@+id/info"
         android:title="Info"
         android:icon="@drawable/ic_info"/>
+    <item
+        android:id="@+id/googleMaps"
+        android:title="Google Maps"
+        android:icon="@drawable/ic_googlemap"/>
 </menu>

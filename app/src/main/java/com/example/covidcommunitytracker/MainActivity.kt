@@ -14,6 +14,7 @@ class MainActivity : AppCompatActivity() {
         val mapFrag = MapFragment()
         val searchFrag = SearchFragment()
         val infoFrag = InfoFragment()
+        val googlemapFrag = GoogleMapsFragment()
 
         setCurrentFragment(homeFrag)
 
@@ -23,6 +24,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.map->setCurrentFragment(mapFrag)
                 R.id.search->setCurrentFragment(searchFrag)
                 R.id.info->setCurrentFragment(infoFrag)
+                R.id.googleMaps->setCurrentFragment(googlemapFrag)
             }
             true
         }
