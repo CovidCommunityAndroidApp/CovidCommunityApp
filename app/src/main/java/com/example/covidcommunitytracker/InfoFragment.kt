@@ -1,10 +1,15 @@
 package com.example.covidcommunitytracker
 
+import android.app.Activity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import kotlinx.android.synthetic.main.fragment_info.*
+import kotlinx.android.synthetic.main.fragment_info.view.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -27,6 +32,7 @@ class InfoFragment : Fragment() {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
+
     }
 
     override fun onCreateView(
@@ -35,6 +41,22 @@ class InfoFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_info, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        // Instead of view.findViewById(R.id.hello) as TextView
+        recyclerview?.layoutManager = LinearLayoutManager(this.context)
+
+        val data = ArrayList<ItemsViewModel>()
+
+        for(i in 1..20){
+            data.add(ItemsViewModel(R.drawable.ic_search,"Item " + i))
+        }
+
+        val adapter = CustomAdapter(data)
+
+        recyclerview.adapter = adapter
     }
 
     companion object {
