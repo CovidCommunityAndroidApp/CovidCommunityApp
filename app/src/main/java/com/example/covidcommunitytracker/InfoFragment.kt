@@ -50,6 +50,7 @@ class InfoFragment : Fragment() {
 
         val data = ArrayList<ItemsViewModel>()
 
+        //creating cards for recycler view and adding to data arrray
         for(i in 1..20){
             data.add(ItemsViewModel(R.drawable.ic_search,"Item " + i))
         }
