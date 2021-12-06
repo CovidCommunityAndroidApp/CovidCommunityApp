@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_main.*
 import androidx.fragment.app.Fragment
+import com.example.covidcommunitytracker.googleAPI.GoogleMapsActivity
+import com.example.covidcommunitytracker.googleAPI.GoogleMapsFragment
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -14,7 +16,7 @@ class MainActivity : AppCompatActivity() {
         val mapFrag = MapFragment()
         val searchFrag = SearchFragment()
         val infoFrag = InfoFragment()
-        val googlemapFrag = GoogleMapsFragment()
+        val googlemapActivity = GoogleMapsActivity()
 
         setCurrentFragment(homeFrag)
 
@@ -24,7 +26,8 @@ class MainActivity : AppCompatActivity() {
                 R.id.map->setCurrentFragment(mapFrag)
                 R.id.search->setCurrentFragment(searchFrag)
                 R.id.info->setCurrentFragment(infoFrag)
-                R.id.googleMaps->setCurrentFragment(googlemapFrag)
+                //R.id.googleMaps->setCurrentFragment(googlemapActivity)
+               // setContentView(R.layout.activity_google_maps)
             }
             true
         }
