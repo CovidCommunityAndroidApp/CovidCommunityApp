@@ -26,9 +26,6 @@ class InfoFragment : Fragment() {
 /*
         val data = ArrayList<ItemsViewModel>()
 
-        for (i in 1..20) {
-            data.add(ItemsViewModel(R.drawable.ic_search, "Item " + i))
-        }
 
         val adapter = CustomAdapter(data)
 
