@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import kotlinx.android.synthetic.main.card_view.view.*
 import kotlinx.android.synthetic.main.card_view_design.view.*
 
 class CustomAdapter(val context: Context, private val mList: List<YelpBusiness>) : RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
@@ -17,7 +19,7 @@ class CustomAdapter(val context: Context, private val mList: List<YelpBusiness>)
         // inflates the card_view_design view
         // that is used to hold list item
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.card_view_design, parent, false)
+            .inflate(R.layout.card_view, parent, false)
 
         return ViewHolder(view)
     }
@@ -38,10 +40,11 @@ class CustomAdapter(val context: Context, private val mList: List<YelpBusiness>)
     }
 
     // Holds the views for adding it to image and text
-    class ViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView) {
+    inner class ViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView) {
         fun bind(business: YelpBusiness){
-            itemView.tvName.text = business.name
-            //itemView.tvAddress.text = business.location.toString()
+            itemView.textViewName.text = business.name
+            itemView.tvLocation.text = business.location.address
+            Glide.with(context).load(business.imageUrl).into(itemView.IVbusiness)
         }
     }
 }
