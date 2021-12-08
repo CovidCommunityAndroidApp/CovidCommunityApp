@@ -62,23 +62,50 @@ class InfoFragment : Fragment() {
         recyclerview.adapter = adapter
         recyclerview.layoutManager = LinearLayoutManager(this.context)
 
+        button_find_vacc.setOnClickListener {
+            val yelpService = retrofit.create(YelpService::class.java)
+            //SEARCHING BUSINESSES
+            yelpService.searchBusiness("Bearer $API_KEY", "Covid Vaccine", "San Diego")
+                .enqueue(object : Callback<YelpSearchResult> {
+                    override fun onResponse(
+                        call: Call<YelpSearchResult>,
+                        response: Response<YelpSearchResult>
+                    ) {
+                        Log.i(TAG, "onResponse $response")
+                        val body = response.body()
+                        if (body != null) {
+                            businesses.addAll(body.business)
+                            adapter.notifyDataSetChanged()
+                        }
+                    }
 
-        val yelpService = retrofit.create(YelpService::class.java)
-        //SEARCHING BUSINESSES
-        yelpService.searchBusiness("Bearer $API_KEY","Covid", "San Diego").enqueue(object : Callback<YelpSearchResult> {
-            override fun onResponse(call: Call<YelpSearchResult>, response: Response<YelpSearchResult>) {
-            Log.i(TAG, "onResponse $response")
-            val body = response.body()
-                if (body != null) {
-                    businesses.addAll(body.business)
-                    adapter.notifyDataSetChanged()
-                }
-            }
+                    override fun onFailure(call: Call<YelpSearchResult>, t: Throwable) {
+                        Log.i(TAG, "onFailure $t")
+                    }
+                })
+        }
+        Testing_Site.setOnClickListener {
+            val yelpService = retrofit.create(YelpService::class.java)
+            //SEARCHING BUSINESSES
+            yelpService.searchBusiness("Bearer $API_KEY", "Covid Testing", "San Diego")
+                .enqueue(object : Callback<YelpSearchResult> {
+                    override fun onResponse(
+                        call: Call<YelpSearchResult>,
+                        response: Response<YelpSearchResult>
+                    ) {
+                        Log.i(TAG, "onResponse $response")
+                        val body = response.body()
+                        if (body != null) {
+                            businesses.addAll(body.business)
+                            adapter.notifyDataSetChanged()
+                        }
+                    }
 
-            override fun onFailure(call: Call<YelpSearchResult>, t: Throwable) {
-                Log.i(TAG,"onFailure $t")
-            }
-        })
+                    override fun onFailure(call: Call<YelpSearchResult>, t: Throwable) {
+                        Log.i(TAG, "onFailure $t")
+                    }
+                })
+        }
         // Instead of view.findViewById(R.id.hello) as TextView
         /*recyclerview?.layoutManager = LinearLayoutManager(this.context)
 
