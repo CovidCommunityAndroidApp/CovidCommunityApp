@@ -61,7 +61,7 @@ class InfoFragment : Fragment() {
         val adapter = CustomAdapter(this.requireContext(),businesses)
         recyclerview.adapter = adapter
         recyclerview.layoutManager = LinearLayoutManager(this.context)
-
+        //ON BUTTON PRESH
         button_find_vacc.setOnClickListener {
             val yelpService = retrofit.create(YelpService::class.java)
             //SEARCHING BUSINESSES
