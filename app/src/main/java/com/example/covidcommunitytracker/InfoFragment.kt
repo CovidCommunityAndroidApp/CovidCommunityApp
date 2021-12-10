@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.fragment_info.*
@@ -54,6 +55,7 @@ class InfoFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         //retrofit
         val retrofit = Retrofit.Builder().baseUrl(BASE_URL).addConverterFactory(GsonConverterFactory.create()).build()
         //recycler view
@@ -61,50 +63,66 @@ class InfoFragment : Fragment() {
         val adapter = CustomAdapter(this.requireContext(),businesses)
         recyclerview.adapter = adapter
         recyclerview.layoutManager = LinearLayoutManager(this.context)
-        //ON BUTTON PRESH
+        //ON BUTTON PRESS
         button_find_vacc.setOnClickListener {
-            val yelpService = retrofit.create(YelpService::class.java)
-            //SEARCHING BUSINESSES
-            yelpService.searchBusiness("Bearer $API_KEY", "Covid Vaccine", "San Diego")
-                .enqueue(object : Callback<YelpSearchResult> {
-                    override fun onResponse(
-                        call: Call<YelpSearchResult>,
-                        response: Response<YelpSearchResult>
-                    ) {
-                        Log.i(TAG, "onResponse $response")
-                        val body = response.body()
-                        if (body != null) {
-                            businesses.addAll(body.business)
-                            adapter.notifyDataSetChanged()
+            val ZIP = etZIP.text.toString()
+            if (ZIP.isNotEmpty() && ZIP.length == 5) {
+                businesses.clear()
+                adapter.notifyDataSetChanged()
+                val yelpService = retrofit.create(YelpService::class.java)
+                //SEARCHING BUSINESSES
+                yelpService.searchBusiness("Bearer $API_KEY", "Covid Vaccine", ZIP)
+                    .enqueue(object : Callback<YelpSearchResult> {
+                        override fun onResponse(
+                            call: Call<YelpSearchResult>,
+                            response: Response<YelpSearchResult>
+                        ) {
+                            Log.i(TAG, "onResponse $response")
+                            val body = response.body()
+                            if (body != null) {
+                                businesses.addAll(body.business)
+                                adapter.notifyDataSetChanged()
+                            }
                         }
-                    }
 
-                    override fun onFailure(call: Call<YelpSearchResult>, t: Throwable) {
-                        Log.i(TAG, "onFailure $t")
-                    }
-                })
+                        override fun onFailure(call: Call<YelpSearchResult>, t: Throwable) {
+                            Log.i(TAG, "onFailure $t")
+                        }
+                    })
+            }
+            else{
+                Toast.makeText(this.context,"Please Enter A Valid ZIP",Toast.LENGTH_SHORT).show()
+            }
         }
         Testing_Site.setOnClickListener {
-            val yelpService = retrofit.create(YelpService::class.java)
-            //SEARCHING BUSINESSES
-            yelpService.searchBusiness("Bearer $API_KEY", "Covid Testing", "San Diego")
-                .enqueue(object : Callback<YelpSearchResult> {
-                    override fun onResponse(
-                        call: Call<YelpSearchResult>,
-                        response: Response<YelpSearchResult>
-                    ) {
-                        Log.i(TAG, "onResponse $response")
-                        val body = response.body()
-                        if (body != null) {
-                            businesses.addAll(body.business)
-                            adapter.notifyDataSetChanged()
+            val ZIP = etZIP.text.toString()
+            if (ZIP.isNotEmpty() && ZIP.length == 5) {
+                businesses.clear()
+                adapter.notifyDataSetChanged()
+                val yelpService = retrofit.create(YelpService::class.java)
+                //SEARCHING BUSINESSES
+                yelpService.searchBusiness("Bearer $API_KEY", "Covid Testing", ZIP)
+                    .enqueue(object : Callback<YelpSearchResult> {
+                        override fun onResponse(
+                            call: Call<YelpSearchResult>,
+                            response: Response<YelpSearchResult>
+                        ) {
+                            Log.i(TAG, "onResponse $response")
+                            val body = response.body()
+                            if (body != null) {
+                                businesses.addAll(body.business)
+                                adapter.notifyDataSetChanged()
+                            }
                         }
-                    }
 
-                    override fun onFailure(call: Call<YelpSearchResult>, t: Throwable) {
-                        Log.i(TAG, "onFailure $t")
-                    }
-                })
+                        override fun onFailure(call: Call<YelpSearchResult>, t: Throwable) {
+                            Log.i(TAG, "onFailure $t")
+                        }
+                    })
+            }
+            else{
+                Toast.makeText(this.context,"Please Enter A Valid ZIP",Toast.LENGTH_SHORT).show()
+            }
         }
         // Instead of view.findViewById(R.id.hello) as TextView
         /*recyclerview?.layoutManager = LinearLayoutManager(this.context)

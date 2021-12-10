@@ -32,8 +32,8 @@ class MainActivity : AppCompatActivity() {
         bottomNavigationView.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.home -> setCurrentFragment(homeFrag)
-                R.id.map -> setCurrentFragment(mapFrag)
-                R.id.search -> setCurrentFragment(searchFrag)
+                //R.id.map -> setCurrentFragment(mapFrag)
+                //R.id.search -> setCurrentFragment(searchFrag)
                 R.id.info -> setCurrentFragment(infoFrag)
                 R.id.googleMaps -> setCurrentFragment(googlePermission)
 

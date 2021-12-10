@@ -26,10 +26,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <!-- TODO: Update blank fragment layout -->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="INFO" />
         <Button
             android:id="@+id/button_find_vacc"
             android:layout_width="wrap_content"
@@ -44,6 +40,13 @@
             android:text="Testing Site"
             android:layout_marginHorizontal="130dp"
             android:layout_marginVertical="550dp"/>
+        <EditText
+            android:id="@+id/etZIP"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="115dp"
+            android:layout_marginVertical="450dp"
+            android:hint="Enter Zip Code Here"/>
     </RelativeLayout>
 
 </FrameLayout>
