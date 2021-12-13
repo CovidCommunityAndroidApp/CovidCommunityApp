@@ -20,6 +20,7 @@ class GoogleMapsActivity : AppCompatActivity(), OnMapReadyCallback {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_google_maps)
+
     }
 
     //method below used to request standard permission request dialog
