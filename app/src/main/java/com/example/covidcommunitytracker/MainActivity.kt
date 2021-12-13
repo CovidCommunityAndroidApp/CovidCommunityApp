@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+        //permissionRequest()
 
         val homeFrag = HomeFragment()
         val mapFrag = MapFragment()
@@ -40,9 +40,7 @@ class MainActivity : AppCompatActivity() {
             }
             true
         }
-        findViewById<Button>(R.id.permissionButton).setOnClickListener {
-            permissionRequest()
-        }
+
     }
 
     private fun permissionRequest() {
