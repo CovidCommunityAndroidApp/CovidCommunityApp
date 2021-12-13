@@ -1,6 +1,5 @@
 package com.example.covidcommunitytracker
 
-import android.app.Activity
 import android.content.ContentValues.TAG
 import android.os.Bundle
 import android.util.Log
@@ -10,9 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.fragment_info.*
-import kotlinx.android.synthetic.main.fragment_info.view.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -61,6 +58,7 @@ class InfoFragment : Fragment() {
         //recycler view
         val businesses = mutableListOf<YelpBusiness>()
         val adapter = CustomAdapter(this.requireContext(),businesses)
+
         recyclerview.adapter = adapter
         recyclerview.layoutManager = LinearLayoutManager(this.context)
         //ON BUTTON PRESS
@@ -123,6 +121,7 @@ class InfoFragment : Fragment() {
             else{
                 Toast.makeText(this.context,"Please Enter A Valid ZIP",Toast.LENGTH_SHORT).show()
             }
+
         }
         // Instead of view.findViewById(R.id.hello) as TextView
         /*recyclerview?.layoutManager = LinearLayoutManager(this.context)
