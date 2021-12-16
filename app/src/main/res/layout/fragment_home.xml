@@ -9,8 +9,10 @@
         android:layout_height="match_parent">
     <!-- TODO: Update blank fragment layout -->
         <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="HOME" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:text="\nWelcome to Our Covid Community Tracker Application!\n\n We created this app to give you a few tools to stay healthy during the pandemic.\n You will see on the menu three options: Home, Info, Maps. We are in the Home Screen Now, in the Info Tab, you can find Vaccination and Testing Sites based on ZIP Code. Finally In the Maps Tab you can see the businesses in a google map around your.\n\n\n We hope you enjoy!" />
+
     </RelativeLayout>
 </FrameLayout>
