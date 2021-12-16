@@ -8,6 +8,8 @@ import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.covidcommunitytracker.R
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.model.MarkerOptions
@@ -15,14 +17,16 @@ import java.util.jar.Manifest
 import java.lang.Object
 
 private const val PERMISSION_CODE_REQUEST_LOCATION = 1
-
-class GoogleMapsActivity : AppCompatActivity(), OnMapReadyCallback {
+private lateinit var fusedLocationClient: FusedLocationProviderClient
+private lateinit var map: GoogleMap
+ abstract class GoogleMapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_google_maps)
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
 
     }
-
+/*
     //method below used to request standard permission request dialog
     private fun requestLocationPermission()
     {
@@ -96,3 +100,6 @@ class GoogleMapsActivity : AppCompatActivity(), OnMapReadyCallback {
     private fun getLastLocation(){
         Log.d("GoogleMapsActivity", "getLastLocation() called.")
     }
+
+ */
+}
